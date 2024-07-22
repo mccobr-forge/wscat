@@ -330,6 +330,11 @@ if (programOptions.listen) {
                 );
             }
           } else {
+            wsConsole.print(
+              Console.Types.Incoming,
+              `${process.hrtime.bigint()} Sending ${data.length} bytes`,
+              Console.Colors.Yellow
+            );
             ws.send(data);
           }
           wsConsole.prompt();
@@ -355,6 +360,11 @@ if (programOptions.listen) {
     });
 
     ws.on('message', (data) => {
+      wsConsole.print(
+        Console.Types.Incoming,
+        `${process.hrtime.bigint()} Received ${data.length} bytes`,
+        Console.Colors.Yellow
+      );
       wsConsole.print(Console.Types.Incoming, data, Console.Colors.Blue);
     });
 
